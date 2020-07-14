@@ -1,0 +1,18 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage{luatextra}
+\usepackage{luatexja}
+%\usepackage{src}
+\usepackage{listings,jlisting}
+
+\begin{document}
+
+\title{Hello, Lua\TeX}
+\author{れいや}
+\date{\today}
+\maketitle
+
+\directlua{
+  dofile("../Lua/Hello.lua")
+}
+
+\end{document}
