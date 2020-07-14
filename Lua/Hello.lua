@@ -1,1 +1,0 @@
-tex.print("Hello, Lua\\TeX!")
