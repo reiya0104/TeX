@@ -1,8 +1,9 @@
+%HelloLuaTeX.tex
 \documentclass[a4paper,11pt]{ltjsarticle}
 \usepackage{luatextra}
 \usepackage{luatexja}
-%\usepackage{src}
-\usepackage{listings,jlisting}
+\usepackage{mylistings}
+\def\lstlistingname{source code}
 
 \begin{document}
 
@@ -14,5 +15,27 @@
 \directlua{
   dofile("../Lua/Hello.lua")
 }
+
+\begin{lstlisting}[caption={Hello.lua}]
+  tex.print("Hello, Lua\\TeX!")
+\end{lstlisting}
+
+\begin{lstlisting}[caption={HelloLuaTeX.tex}]
+  %HelloLuaTeX.tex
+  \documentclass[a4paper,11pt]{ltjsarticle}
+  \usepackage{luatextra}
+  \usepackage{luatexja}
+  \usepackage{listings,xcolor}
+  \begin{document}
+    \title{Hello, Lua\TeX}
+    \author{れいや}
+    \date{\today}
+    \maketitle
+    
+    \directlua{
+      dofile("../Lua/Hello.lua")
+    }
+  \end{document}
+\end{lstlisting}
 
 \end{document}

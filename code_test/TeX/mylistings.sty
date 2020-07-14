@@ -1,0 +1,33 @@
+
+\ifdefined\directlua%
+  \usepackage{listings,xcolor}%
+\else%
+  \ifdefined\luaexec%
+    \usepackage{listings,xcolor}%
+  \else%
+    \usepackage{plistings,xcolor}%
+    \def\zw{zw}
+  \fi%
+\fi
+
+\lstset{
+  %language={TeX},
+  backgroundcolor={\color[gray]{.85}},%
+  basicstyle={\small},%
+  identifierstyle={\small},%
+  commentstyle={\small\ttfamily \color[rgb]{0,0.5,0}},%
+  keywordstyle={\small\bfseries \color[rgb]{0,0,1}},%
+  ndkeywordstyle={\small},%
+  stringstyle={\small\ttfamily},%
+  frame={tb},%
+  breaklines=true,%
+  columns=[l]{fullflexible},%
+  numbers=left,%
+  numberstyle={\scriptsize},%
+  stepnumber=1,
+  xrightmargin=0\zw,%
+  xleftmargin=3\zw,%
+  numbersep=1\zw,%
+  morecomment=[l]{--},%
+  morecomment=[l]{\%}%
+}
