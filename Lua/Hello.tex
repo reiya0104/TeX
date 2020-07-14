@@ -1,0 +1,15 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage{luatextra}
+\usepackage{luatexja}
+\begin{document}
+
+\title{Hello, Lua\TeX}
+\author{れいや}
+\date{\today}
+\maketitle
+
+\directlua{
+  dofile("Hello.lua")
+}
+
+\end{document}
