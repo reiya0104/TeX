@@ -1,18 +1,41 @@
 
+
+% reference: https://tex.stackexchange.com/questions/451532/recent-issues-with-lstlinebgrd-package-with-listings-after-the-latters-updates
 \ifdefined\directlua%
   \usepackage{listings,xcolor}%
+  %\usepackage{lstlinebgrd,xcolor}
 \else%
   \ifdefined\luaexec%
     \usepackage{listings,xcolor}%
+    %\usepackage{lstlinebgrd}
   \else%
     \usepackage{plistings,xcolor}%
+    %\usepackage{lstlinebgrd}
     \def\zw{zw}
   \fi%
 \fi
+\makeatletter
+\let\old@lstKV@SwitchCases\lstKV@SwitchCases
+\def\lstKV@SwitchCases#1#2#3{}
+\makeatother
+\usepackage{lstlinebgrd}
+\makeatletter
+\let\lstKV@SwitchCases\old@lstKV@SwitchCases
 
+\lst@Key{numbers}{none}{%
+    \def\lst@PlaceNumber{\lst@linebgrd}%
+    \lstKV@SwitchCases{#1}%
+    {none:\\%
+     left:\def\lst@PlaceNumber{\llap{\normalfont
+                \lst@numberstyle{\thelstnumber}\kern\lst@numbersep}\lst@linebgrd}\\%
+     right:\def\lst@PlaceNumber{\rlap{\normalfont
+                \kern\linewidth \kern\lst@numbersep
+                \lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
+    }{\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
+\makeatother
 \lstset{
   %language={TeX},
-  backgroundcolor={\color[gray]{.85}},%
+  %backgroundcolor={\color[gray]{.85}},%
   basicstyle={\small},%
   identifierstyle={\small},%
   commentstyle={\small\ttfamily \color[rgb]{0,0.5,0}},%
@@ -29,5 +52,6 @@
   xleftmargin=3\zw,%
   numbersep=1\zw,%
   morecomment=[l]{--},%
-  morecomment=[l]{\%}%
+  morecomment=[l]{\%},%
+  linebackgroundcolor={\ifodd\value{lstnumber}\color[rgb]{0.91,0.8980,0.8980}\else\color[rgb]{1,0.9803,0.9803}\fi},%
 }
